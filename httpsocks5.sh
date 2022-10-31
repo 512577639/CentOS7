@@ -89,7 +89,6 @@ EOF
   systemctl enable squid.service #设置开机自动启动
 }
 function install_socks5() {
-  yum install -y wget
   wget --no-check-certificate https://raw.github.com/Lozy/danted/master/install.sh -O install_proxy.sh
   bash install_proxy.sh --port=32123 --user=8888 --passwd=8888
   systemctl enable sockd
