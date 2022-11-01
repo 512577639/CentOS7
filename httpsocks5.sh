@@ -1,7 +1,8 @@
 #!/bin/bash
 function install_http() {
-  yum install -y squid #安装http代理
-  #yum install -y net-tools
+  yum install -y openssl
+  yum install -y squid
+  yum install -y net-tools
   cat <<EOF >/etc/squid/squid.conf
 #
 # Recommended minimum configuration:
@@ -25,7 +26,6 @@ acl Safe_ports port 210         # wais
 acl Safe_ports port 1025-65535  # unregistered ports
 acl Safe_ports port 280         # http-mgmt
 acl Safe_ports port 488         # gss-http
-"/etc/squid/squid.conf" 80L, 2486C
 #
 # Recommended minimum configuration:
 #
