@@ -242,4 +242,4 @@ function install_socks5() {
   systemctl enable sockd
 }
 install_http
-#install_socks5
+install_socks5
