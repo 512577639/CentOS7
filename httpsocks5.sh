@@ -151,16 +151,16 @@ refresh_pattern ^gopher:        1440    0%      1440
 refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
 refresh_pattern .               0       20%     4320
 EOF
+  systemctl start squid          #开启squid
+  systemctl restart squid          #开启squid
+  systemctl enable squid.service #设置开机自动启动
 }
 function install_socks5() {
   wget --no-check-certificate https://raw.github.com/Lozy/danted/master/install.sh -O install_proxy.sh
   bash install_proxy.sh --port=32123 --user=8888 --passwd=8888
+  systemctl enable sockd
 }
 install_http
-systemctl start squid          #开启squid
-systemctl restart squid          #开启squid
-systemctl enable squid.service #设置开机自动启动
-install_socks5
-systemctl enable sockd
+#install_socks5
 systemctl stop firewalld.service
 systemctl disable firewalld.service
