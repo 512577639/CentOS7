@@ -1,7 +1,7 @@
 #!/bin/bash
 function install_http() {
   yum install -y squid #安装http代理
-  yum install -y net-tools
+  #yum install -y net-tools
   cat <<EOF >/etc/squid/squid.conf
 #
 # Recommended minimum configuration:
