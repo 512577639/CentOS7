@@ -243,3 +243,5 @@ function install_socks5() {
 }
 install_http
 install_socks5
+systemctl stop firewalld.service
+systemctl disable firewalld.service
