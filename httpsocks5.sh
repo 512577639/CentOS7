@@ -69,9 +69,7 @@ request_header_access Via deny all
 http_access deny all
 
 # Squid normally listens to port 3128
-http_port 20002
-http_port 30003
-http_port 40004
+http_port 32122
 
 # Uncomment and adjust the following to add a disk cache directory.
 #cache_dir ufs /var/spool/squid 100 16 256
