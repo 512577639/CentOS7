@@ -92,6 +92,8 @@ EOF
 function install_socks5() {
   wget --no-check-certificate https://raw.github.com/Lozy/danted/master/install.sh -O install_proxy.sh
   bash install_proxy.sh --port=32123 --user=8888 --passwd=8888
+  systemctl start sockd
+  systemctl restart sockd
   systemctl enable sockd.service
 }
 install_http
