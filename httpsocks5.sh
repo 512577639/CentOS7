@@ -96,6 +96,7 @@ function install_socks5() {
   systemctl restart sockd
   systemctl enable sockd.service
 }
+yum install -y wget
 install_http
 install_socks5
 systemctl stop firewalld.service
