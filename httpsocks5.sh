@@ -80,9 +80,9 @@ function install_http() {
   refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
   refresh_pattern .               0       20%     4320
   EOF
-    systemctl start squid            #开启squid
-    systemctl restart squid          #开启squid
-    systemctl enable squid.service   #设置开机自动启动
+  systemctl start squid            #开启squid
+  systemctl restart squid          #开启squid
+  systemctl enable squid.service   #设置开机自动启动
 }
 
 function install_socks5() {
