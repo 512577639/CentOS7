@@ -12,7 +12,7 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
-REQUEST_SERVER="https://raw.github.com/Lozy/danted/master"
+REQUEST_SERVER="https://raw.github.com/512577639/CentOS7/main"
 SCRIPT_SERVER="https://public.sockd.info"
 SYSTEM_RECOGNIZE=""
 
