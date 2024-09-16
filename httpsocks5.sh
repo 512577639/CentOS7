@@ -4,9 +4,8 @@ function install_http() {
   yum install -y squid
   yum install -y net-tools
   cat <<EOF >/etc/squid/squid.conf
-#
+
 # Recommended minimum configuration:
-#
 
 # Example rule allowing access from your local networks.
 # Adapt to list your (internal) IP networks from where browsing
@@ -30,9 +29,8 @@ acl Safe_ports port 591         # filemaker
 acl Safe_ports port 777         # multiling http
 acl CONNECT method CONNECT
 
-#
 # Recommended minimum Access Permission configuration:
-#
+
 # Deny requests to certain unsafe ports
 http_access deny !Safe_ports
 
@@ -48,9 +46,7 @@ http_access deny manager
 # one who can access services on "localhost" is a local user
 #http_access deny to_localhost
 
-#
 # INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
-#
 
 # Example rule allowing access from your local networks.
 # Adapt localnet in the ACL section to list your (internal) IP networks
@@ -72,14 +68,13 @@ http_access deny all
 http_port 32122
 
 # Uncomment and adjust the following to add a disk cache directory.
-#cache_dir ufs /var/spool/squid 100 16 256
+# cache_dir ufs /var/spool/squid 100 16 256
 
 # Leave coredumps in the first cache dir
 coredump_dir /var/spool/squid
 
-#
 # Add any of your own refresh_pattern entries above these.
-#
+
 refresh_pattern ^ftp:           1440    20%     10080
 refresh_pattern ^gopher:        1440    0%      1440
 refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
@@ -90,11 +85,8 @@ EOF
   systemctl enable squid.service #设置开机自动启动
 }
 function install_socks5() {
-  wget --no-check-certificate https://raw.github.com/Lozy/danted/master/install.sh -O install_proxy.sh
-  bash install_proxy.sh --port=32123 --user=8888 --passwd=8888
-  systemctl start sockd
-  systemctl restart sockd
-  systemctl enable sockd.service
+  wget --no-check-certificate https://raw.github.com/512577639/CentOS7/main/socks5.sh -O socks5.sh.sh
+  bash socks5.sh --port=32123 --user=8888 --passwd=8888
 }
 yum install -y wget
 install_http
