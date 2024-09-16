@@ -118,7 +118,6 @@ function open_port() {
       exit 1
   fi
 }
-yum install -y wget
 install_http
 install_socks5
 if systemctl is-active --quiet firewalld; then  
