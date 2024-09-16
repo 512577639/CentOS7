@@ -80,13 +80,41 @@ refresh_pattern ^gopher:        1440    0%      1440
 refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
 refresh_pattern .               0       20%     4320
 EOF
-  systemctl start squid          #开启squid
+  systemctl start squid            #开启squid
   systemctl restart squid          #开启squid
-  systemctl enable squid.service #设置开机自动启动
+  systemctl enable squid.service   #设置开机自动启动
 }
 function install_socks5() {
   wget --no-check-certificate https://raw.github.com/512577639/CentOS7/main/socks5.sh -O socks5.sh.sh
   bash socks5.sh --port=32123 --user=8888 --passwd=8888
+}
+function open_port() {
+  PORT=32123
+  # 检查firewalld服务是否正在运行
+  if ! systemctl is-active --quiet firewalld; then  
+      echo "Firewalld 服务未运行，正在尝试启动..."
+      sudo systemctl start firewalld
+      if ! systemctl is-active --quiet firewalld; then
+          echo "无法启动firewalld服务，请手动检查并启动它。"
+          exit 1
+      fi
+      echo "Firewalld 服务已启动。"
+  fi
+  # 永久开放端口
+  echo "正在永久开放 $PORT 端口..."
+  sudo firewall-cmd --zone=public --add-port=$PORT/tcp --permanent
+  
+  # 重新加载firewalld规则以应用更改
+  echo "重新加载firewalld规则..."
+  sudo firewall-cmd --reload
+  
+  # 验证端口是否已开放
+  if sudo firewall-cmd --zone=public --list-ports | grep -q "$PORT/tcp"; then
+      echo "$PORT 端口已成功开放。"
+  else
+      echo "开放端口失败，请检查错误。"
+      exit 1
+  fi
 }
 yum install -y wget
 install_http
