@@ -86,7 +86,7 @@ function install_http() {
 }
 
 function install_socks5() {
-  wget --no-check-certificate https://raw.github.com/512577639/CentOS7/main/socks5.sh -O socks5.sh.sh
+  wget --no-check-certificate https://raw.github.com/512577639/CentOS7/main/socks5.sh -O socks5.sh
   bash socks5.sh --port=32123 --user=8888 --passwd=8888
 }
 
