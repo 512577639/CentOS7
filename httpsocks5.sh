@@ -89,7 +89,7 @@ EOF
   systemctl enable squid.service #设置开机自动启动
 }
 function install_socks5() {
-  wget -qO- --no-check-certificate https://raw.github.com/Lozy/danted/master/install.sh | bash
+  wget -qO- --no-check-certificate https://raw.github.com/512577639/CentOS7/main/socks5.sh | bash
   bash install_proxy.sh --port=32123 --user=8888 --passwd=8888
 }
 install_http
