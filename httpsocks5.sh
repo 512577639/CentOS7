@@ -121,5 +121,8 @@ function open_port() {
 yum install -y wget
 install_http
 install_socks5
-systemctl stop firewalld.service
-systemctl disable firewalld.service
+if systemctl is-active --quiet firewalld; then  
+  echo "停止并禁用防火墙服务..."
+  systemctl stop firewalld.service
+  systemctl disable firewalld.service
+fi
